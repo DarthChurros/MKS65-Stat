@@ -3,12 +3,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <time.h>
 
 int main() {
   printf("%u\n", 7<<1);
   struct stat mf_data;
   stat("makefile", &mf_data);
-  printf("File size: %lldB\n", mf_data.st_size);
+  printf("File size: %lld B\n", mf_data.st_size);
 
   printf("Permissions: ");
   char full_perms[] = "rwxrwxrwx";
@@ -25,6 +26,6 @@ int main() {
 
   printf("%s\n", perms);
 
-  printf("Last accessed: %ld\n", mf_data.st_atime);
+  printf("Last accessed: %s\n", ctime(&mf_data.st_atime));
   return 0;
 }
