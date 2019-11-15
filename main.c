@@ -6,10 +6,9 @@
 #include <time.h>
 
 int main() {
-  printf("%u\n", 7<<1);
   struct stat mf_data;
   stat("makefile", &mf_data);
-  printf("File size: %lld B\n", mf_data.st_size);
+  printf("File size: %lld B\n", (long long)(mf_data.st_size));
 
   printf("Permissions: ");
   char full_perms[] = "rwxrwxrwx";
