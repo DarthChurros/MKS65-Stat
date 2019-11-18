@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -11,14 +12,13 @@ int main() {
   printf("File size: %lld B\n", (long long)(mf_data.st_size));
 
   printf("Permissions: ");
-  char full_perms[] = "rwxrwxrwx";
-  char perms[10];
+  char perms[11];
+  strcpy(perms, "-rwxrwxrwx");
   int i;
   int j = 1;
   for (i = 0; i < 9; i++) {
-    perms[sizeof(mode_t) * 4 - i] = '-';
-    if (j & mf_data.st_mode) {
-      perms[sizeof(mode_t) * 4 - i] = full_perms[sizeof(mode_t) * 4 - i];
+    if (!(j & mf_data.st_mode)) {
+      perms[9 - i] = '-';
     }
     j = j << 1;
   }
