@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -12,8 +11,7 @@ int main() {
   printf("File size: %lld B\n", (long long)(mf_data.st_size));
 
   printf("Permissions: ");
-  char perms[11];
-  strcpy(perms, "-rwxrwxrwx");
+  char perms[11] = "-rwxrwxrwx";
   int i;
   int j = 1;
   for (i = 0; i < 9; i++) {
